@@ -1,4 +1,4 @@
-"Dictionary Utility Functions"
+"""Dictionary Utility Functions"""
 
 __author__ = "730802154"
 
