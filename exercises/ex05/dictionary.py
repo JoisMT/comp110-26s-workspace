@@ -5,7 +5,7 @@ __author__ = "730802154"
 
 def invert(input_dict: dict[str, str]) -> dict[str, str]:
     result: dict[str, str] = {}
-
+    """Inverting letters"""
     for key in input_dict:
         value: str = input_dict[key]
 
@@ -19,7 +19,7 @@ def invert(input_dict: dict[str, str]) -> dict[str, str]:
 
 def favorite_color(colors: dict[str, str]) -> str:
     count: dict[str, int] = {}
-
+    """Matching name with color"""
     for name in colors:
         color: str = colors[name]
 
@@ -43,7 +43,7 @@ def favorite_color(colors: dict[str, str]) -> str:
 
 def count(values: list[str]) -> dict[str, int]:
     result: dict[str, int] = {}
-
+    """Count number of times value appear"""
     for item in values:
         if item in result:
             result[item] = result[item] + 1
@@ -54,7 +54,7 @@ def count(values: list[str]) -> dict[str, int]:
 
 def alphabetizer(words: list[str]) -> dict[str, list[str]]:
     result: dict[str, list[str]] = {}
-
+    """Match word with letter"""
     for word in words:
         first_letter: str = word[0].lower()
 
