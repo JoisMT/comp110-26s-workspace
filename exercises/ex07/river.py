@@ -8,6 +8,10 @@ from ex07.bear import Bear
 class River:
 
     day: int
+    bears: list[Bear]
+    fish: list[Fish]
+
+    day: int
     fish: list[Fish]
     bears: list[Bear]
 
@@ -23,28 +27,75 @@ class River:
             self.bears.append(Bear())
 
     def check_ages(self):
+        """Remove old animals from river"""
+
+        surviving_fish: list[Fish] = []
+        for f in self.fish:
+            if f.age <= 3:
+                surviving_fish.append(f)
+        self.fish = surviving_fish
+
+        surviving_bears: list[Bear] = []
+        for b in self.bears:
+            if b.age <= 5:
+                surviving_bears.append(b)
+        self.bears = surviving_bears
+
         return None
 
     def bears_eating(self):
+        """Each bear eats 3 fish if there are at least 5 available."""
+        for bear in self.bears:
+            if len(self.fish) >= 5:
+                self.remove_fish(3)
+                bear.eat(3)
         return None
 
     def check_hunger(self):
+        """Remove bears that have a hunger score below 0."""
+        surviving_bears: list[Bear] = []
+        for bear in self.bears:
+            if bear.hunger_score >= 0:
+                surviving_bears.append(bear)
+        self.bears = surviving_bears
         return None
 
     def repopulate_fish(self):
+        """Each pair of fish produces 4 offspring"""
+        new_fish: int = (len(self.fish) // 2) * 4
+        for _ in range(new_fish):
+            self.fish.append(Fish())
         return None
 
     def repopulate_bears(self):
+        """Each pair of bears produces 1 offspring"""
+        new_bears: int = len(self.bears) // 2
+        for _ in range(new_bears):
+            self.bears.append(Bear())
         return None
 
     def __str__(self) -> str:
-        return ""
-    
+        return (
+            f"~~~ Day {self.day}: ~~~\n"
+            f"Fish population: {len(self.fish)}\n"
+            f"Bear population: {len(self.bears)}"
+        )
+
     def __add__(self, other_riv: River) -> River:
+        """Combine two rivers into a new one"""
+        total_fish: int = len(self.fish) + len(other_riv.fish)
+        total_bears: int = len(self.bears) + len(other_riv.bears)
+
+        return River(total_fish, total_bears)
+
         return self
-    
+
     def __mul__(self, factor: int) -> River:
-        return self
+        """Scale a river by a factor to create a new one"""
+        new_fish_count: int = len(self.fish) * factor
+        new_bear_count: int = len(self.bears) * factor
+
+        return River(new_fish_count, new_bear_count)
 
     def one_river_day(self):
         """Simulate one day of life in the river"""
@@ -68,3 +119,16 @@ class River:
         self.repopulate_bears()
         # Visualize River
         print(self)
+
+    def one_river_week(self):
+        """Simulate a week in the river"""
+        for _ in range(7):
+            self.one_river_day()
+        return None
+
+    def remove_fish(self, amount: int):
+        """Remove fish from front of list"""
+        for _ in range(amount):
+            if len(self.fish) > 0:
+                self.fish.pop(0)
+        return None
