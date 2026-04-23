@@ -2,6 +2,7 @@
 
 
 class Bear:
+    """Changes in age and hunger"""
 
     age: int
     hunger_score: int
@@ -13,7 +14,7 @@ class Bear:
         return None
 
     def one_day(self):
-
+        """Increase age and decrease hunger."""
         self.age += 1
         self.hunger_score -= 1
         return None

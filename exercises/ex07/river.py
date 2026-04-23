@@ -1,8 +1,10 @@
 """File to define River class."""
 
 from __future__ import annotations
-from ex07.fish import Fish
-from ex07.bear import Bear
+from exercises.ex07.fish import Fish
+from exercises.ex07.bear import Bear
+
+__author__ = "730802154"
 
 
 class River:
@@ -69,8 +71,8 @@ class River:
 
     def repopulate_bears(self):
         """Each pair of bears produces 1 offspring"""
-        new_bears: int = len(self.bears) // 2
-        for _ in range(new_bears):
+        num_new_bears: int = len(self.bears) // 2
+        for _ in range(num_new_bears):
             self.bears.append(Bear())
         return None
 

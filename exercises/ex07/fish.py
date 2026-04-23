@@ -2,6 +2,7 @@
 
 
 class Fish:
+    """Changes in age."""
 
     age: int
 
@@ -11,6 +12,6 @@ class Fish:
         return None
 
     def one_day(self):
-
+        """Increase age"""
         self.age += 1
         return None

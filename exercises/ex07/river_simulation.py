@@ -1,3 +1,5 @@
+__author__ = "730802154"
+
 """File to run river simulation."""
 
 from exercises.ex07.river import River
